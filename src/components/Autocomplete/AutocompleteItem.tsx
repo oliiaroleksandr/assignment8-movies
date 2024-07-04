@@ -1,13 +1,16 @@
 import { Movie } from "@/data/movies";
+import StarRating from "../StarRating";
 
 const AutocompleteItem = ({ title, genre, rating }: Omit<Movie, "id">) => {
   return (
     <div className="flex items-center justify-between gap-4">
       <div>
-        <h3 className="font-semibold">{title}</h3>
-        <p>{rating}</p>
+        <h3 className="mb-1 font-semibold">{title}</h3>
+        <StarRating rating={rating} />
       </div>
-      <p className="text-sm font-semibold text-muted-foreground">{genre}</p>
+      <span className="text-sm font-semibold text-muted-foreground">
+        {genre}
+      </span>
     </div>
   );
 };

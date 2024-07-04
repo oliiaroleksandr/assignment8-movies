@@ -54,7 +54,7 @@ const Autocomplete = ({ movies, onSearchChange }: Props) => {
         className="autocomplete"
         align="start"
       >
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-6">
           {movies.length > 0 ? (
             movies.map(({ id, ...movie }) => (
               <AutocompleteItem key={id} {...movie} />
