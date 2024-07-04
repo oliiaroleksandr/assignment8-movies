@@ -1,8 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
-import { Autocomplete } from "./components";
-import { MultipleSelector } from "./components/ui";
-import { genres, movies as initialMovies } from "./data";
-import { Option } from "./components/ui/MultiSelect";
+import { Autocomplete, GenresSelect } from "./components";
+import { movies as initialMovies } from "./data";
 
 const App = () => {
   const [movies, setMovies] = useState(initialMovies);
@@ -16,8 +14,8 @@ const App = () => {
     setFilters((prev) => ({ ...prev, search: query }));
   }, []);
 
-  const handleGenreChange = useCallback((genres: Option[]) => {
-    setFilters((prev) => ({ ...prev, genres: genres.map((g) => g.value) }));
+  const handleGenreChange = useCallback((genres: string[]) => {
+    setFilters((prev) => ({ ...prev, genres }));
   }, []);
 
   useEffect(() => {
@@ -45,13 +43,8 @@ const App = () => {
         <div className="grow">
           <Autocomplete movies={movies} onSearchChange={handleSearchChange} />
         </div>
-        <div className="basis-[15rem]">
-          <MultipleSelector
-            defaultOptions={genres}
-            placeholder="Genre"
-            onChange={handleGenreChange}
-            emptyIndicator="No genre found"
-          />
+        <div className="basis-[12rem]">
+          <GenresSelect value={filters.genres} onChange={handleGenreChange} />
         </div>
       </div>
     </div>

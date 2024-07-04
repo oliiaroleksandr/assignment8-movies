@@ -15,4 +15,8 @@ export const genres = [
     label: "Drama",
     value: "Drama",
   },
+  {
+    label: "Any genre",
+    value: "Any",
+  }
 ];
