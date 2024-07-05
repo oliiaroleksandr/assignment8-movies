@@ -1,5 +1,9 @@
 export const genres = [
   {
+    label: "Any genre",
+    value: "Any",
+  },
+  {
     label: "Action",
     value: "Action",
   },
@@ -15,8 +19,4 @@ export const genres = [
     label: "Drama",
     value: "Drama",
   },
-  {
-    label: "Any genre",
-    value: "Any",
-  }
 ];

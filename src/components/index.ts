@@ -1,2 +1,2 @@
 export { Autocomplete } from "./Autocomplete";
-export { default as GenresSelect } from "./GenresSelect";
+export { GenresSelect } from "./GenresSelect";

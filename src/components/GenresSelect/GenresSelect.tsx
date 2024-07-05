@@ -6,10 +6,10 @@ import {
   Popover,
   PopoverContent,
   PopoverTrigger,
-} from "./ui";
+} from "@/components/ui";
 import { ChevronDownIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { genres } from "@/data";
+import { genres } from "./const";
 import { CheckedState } from "@radix-ui/react-checkbox";
 
 type Props = {
@@ -45,6 +45,12 @@ const GenresSelect = ({ onChange, value }: Props) => {
       return;
     }
 
+    if (value.includes("Any")) {
+      const newValue = value.filter((v) => v !== genre && v !== "Any");
+      onChange(newValue);
+      return;
+    }
+
     const newValue = value.filter((v) => v !== genre);
     onChange(newValue);
   };
@@ -66,7 +72,7 @@ const GenresSelect = ({ onChange, value }: Props) => {
         onInteractOutside={handleIntereactOutside}
         className="genres-select"
       >
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           {genres.map((genre) => {
             return (
               <div
