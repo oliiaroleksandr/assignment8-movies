@@ -51,10 +51,10 @@ const App = () => {
   return (
     <div className="mx-auto max-w-5xl px-4 py-10">
       <div className="flex w-full flex-col-reverse items-start gap-4 md:flex-row">
-        <div className="w-full md:basis-[60%]">
+        <div className="w-full md:basis-[65%] lg:basis-[75%]">
           <Autocomplete movies={movies} onSearchChange={handleSearchChange} />
         </div>
-        <div className="flex w-full items-center gap-4 md:basis-[40%]">
+        <div className="flex w-full items-center gap-4 md:basis-[40%] lg:basis-[35%]">
           <div className="grow">
             <RatingsSelect
               value={filters.rating}

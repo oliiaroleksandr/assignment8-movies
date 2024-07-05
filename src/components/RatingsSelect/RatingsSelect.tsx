@@ -35,7 +35,7 @@ const RatingsSelect = ({ value, onChange }: Props) => {
         </Button>
       </PopoverTrigger>
       <PopoverContent
-        className="ratings-select w-[calc(2_*_var(--radix-popover-trigger-width)_+1rem)]"
+        className="ratings-select w-[calc(2_*_var(--radix-popover-trigger-width)_+1rem)] sm:w-[var(--radix-popover-trigger-width)] md:w-[calc(2_*_var(--radix-popover-trigger-width)_+1rem)]"
         align="start"
       >
         <RadioGroup
