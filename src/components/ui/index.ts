@@ -3,3 +3,4 @@ export { Popover, PopoverTrigger, PopoverContent } from "./Popover";
 export { Checkbox } from "./Checkbox";
 export { Button } from "./Button";
 export { Label } from "./Label";
+export { RadioGroup, RadioGroupItem } from "./RadioGroup";

@@ -23,7 +23,11 @@ const Autocomplete = ({ movies, onSearchChange }: Props) => {
 
   const handleIntereactOutside = (e: Event) => {
     const target = e.target as Element;
-    if (target?.closest(".genres-select")) {
+    
+    if (
+      target?.closest(".genres-select") ||
+      target?.closest(".ratings-select")
+    ) {
       e.preventDefault();
     }
   };
@@ -34,7 +38,7 @@ const Autocomplete = ({ movies, onSearchChange }: Props) => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger className="autocomplete w-full ">
+      <PopoverTrigger className="autocomplete w-full">
         <label htmlFor="search" className="sr-only">
           Search movies
         </label>

@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import { Autocomplete, GenresSelect } from "./components";
+import { Autocomplete, GenresSelect, RatingsSelect } from "./components";
 import { movies as initialMovies } from "./data";
 
 const App = () => {
@@ -8,6 +8,7 @@ const App = () => {
   const [filters, setFilters] = useState({
     genres: [] as string[],
     search: "",
+    rating: 0,
   });
 
   const handleSearchChange = useCallback((query: string) => {
@@ -16,6 +17,10 @@ const App = () => {
 
   const handleGenreChange = useCallback((genres: string[]) => {
     setFilters((prev) => ({ ...prev, genres }));
+  }, []);
+
+  const handleRatingChange = useCallback((rating: number) => {
+    setFilters((prev) => ({ ...prev, rating }));
   }, []);
 
   useEffect(() => {
@@ -28,7 +33,13 @@ const App = () => {
       }
 
       if (filters.genres.length > 0) {
-        return !!filters.genres.find((genre) => genre === movie.genre);
+        if (!filters.genres.find((genre) => genre === movie.genre)) {
+          return false;
+        }
+      }
+
+      if (filters.rating > 0 && movie.rating < filters.rating) {
+        return false;
       }
 
       return true;
@@ -38,13 +49,21 @@ const App = () => {
   }, [filters]);
 
   return (
-    <div className="mx-auto max-w-5xl py-10">
-      <div className="flex w-full items-start gap-4">
-        <div className="grow">
+    <div className="mx-auto max-w-5xl px-4 py-10">
+      <div className="flex w-full flex-col-reverse items-start gap-4 md:flex-row">
+        <div className="w-full md:basis-[60%]">
           <Autocomplete movies={movies} onSearchChange={handleSearchChange} />
         </div>
-        <div className="basis-[12rem]">
-          <GenresSelect value={filters.genres} onChange={handleGenreChange} />
+        <div className="flex w-full items-center gap-4 md:basis-[40%]">
+          <div className="grow">
+            <RatingsSelect
+              value={filters.rating}
+              onChange={handleRatingChange}
+            />
+          </div>
+          <div className="grow">
+            <GenresSelect value={filters.genres} onChange={handleGenreChange} />
+          </div>
         </div>
       </div>
     </div>

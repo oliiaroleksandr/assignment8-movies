@@ -20,13 +20,6 @@ type Props = {
 const GenresSelect = ({ onChange, value }: Props) => {
   const [open, setOpen] = useState(false);
 
-  const handleIntereactOutside = (e: Event) => {
-    const target = e.target as Element;
-    if (target?.closest(".autocomplete")) {
-      e.preventDefault();
-    }
-  };
-
   const handleCheckedChange = (checked: CheckedState, genre: string) => {
     if (genre === "Any") {
       if (checked) {
@@ -57,8 +50,8 @@ const GenresSelect = ({ onChange, value }: Props) => {
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
-      <PopoverTrigger asChild>
-        <Button className="genres-select w-full justify-between border border-border bg-background text-foreground hover:bg-background hover:text-foreground">
+      <PopoverTrigger asChild className="genres-select">
+        <Button className="w-full justify-between border border-border bg-background text-foreground hover:bg-background hover:text-foreground">
           Genre{" "}
           <ChevronDownIcon
             className={cn(
@@ -68,10 +61,7 @@ const GenresSelect = ({ onChange, value }: Props) => {
           />
         </Button>
       </PopoverTrigger>
-      <PopoverContent
-        onInteractOutside={handleIntereactOutside}
-        className="genres-select"
-      >
+      <PopoverContent className="genres-select">
         <div className="flex flex-col gap-3">
           {genres.map((genre) => {
             return (
